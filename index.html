@@ -83,7 +83,7 @@
             min-height: 150px;
             color: white;
             font-weight: 600;
-            background-image: url('https://img.freepik.com/premium-photo/3d-render-happy-raksha-bandhan-celebration-beautiful-traditional-rakhi-design-background_460848-499.jpg');
+            background-image: url('https://static.vecteezy.com/system/resources/previews/020/747/350/non_2x/happy-raksha-bandhan-greeting-card-with-beautiful-pearl-rakhi-on-dark-pink-and-orange-background-vector.jpg');
             background-size: cover;
             background-position: center;
         }
@@ -152,13 +152,13 @@
     <div class="container">
         <div class="header">
             <div class="logo">अनमोल डेयरी मिष्ठान भंडार</div>
-            <h1>रक्षाबंधन की रंगीन बधाई</h1>
+            <h1>"रक्षाबंधन की हार्दिक बधाई"</h1>
         </div>
 
         <div class="greeting-box">
             <div class="name-input">
                 <h2>आपका शुभ नाम</h2>
-                <input type="text" id="userName" placeholder="कृपया अपना नाम लिखें..." autocomplete="off" />
+                <input type="text" id="userName" placeholder="यहाँ अपना नाम लिखें..." autocomplete="off" />
                 <button id="congratsBtn" disabled>बधाई प्राप्त करें</button>
             </div>
             <div id="greetingResult"></div>
@@ -210,17 +210,16 @@
             }
 
             const greetings = [
-                `प्रिय ${name}, रक्षाबंधन की हार्दिक शुभकामनाएं!`,
-                `आदरणीय ${name} जी, इस पावन पर्व पर हमारी ढेर सारी बधाई!`,
-                `प्यारे ${name}, राखी के इस त्योहार पर आपको अनमोल डेयरी की तरफ से शुभकामनाएं!`
+                `${name} जी, रक्षा बंधन के इस पावन त्यौहार पर आपके जीवन में खुशियों की बहार आए। अनमोल डेयरी की तरफ से हार्दिक शुभकामनाएं।`,
+                `${name} जी, रक्षा बंधन के इस पावन पर्व पर अनमोल डेयरी की तरफ से ढेर सारी बधाई!`,
+                `${name} जी, राखी के इस पावन पर्व पर अनमोल डेयरी की तरफ से ढेर सारी शुभकामनाएं!`
             ];
 
             const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
 
             greetingResult.innerHTML = `<h2>${randomGreeting}</h2>
     <p>आपके जीवन में सुख, शांति और समृद्धि बनी रहे। भगवान आपको और आपके परिवार को सदैव सुरक्षित रखें।</p>
-    <p>हमारी दुकान पर आकर स्वादिष्ट मिठाइयों से इस त्योहार को और भी मीठा बनाएं!</p>
-    <p>हमारे विशेष रक्षाबंधन ऑफर का लाभ उठाएं - सभी मिठाइयों पर 10% की विशेष छूट!</p>`;
+    <p>"हमारी दुकान की स्वादिष्ट एवं शुद्ध मिठाइयों से इस त्योहार को और भी मीठा बनाएं!"</p>`;
 
             greetedNames.add(name.toLowerCase());
 
