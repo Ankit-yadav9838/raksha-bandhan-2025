@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>रक्षाबंधन की रंगीन बधाई | अनमोल डेयरी मिष्ठान भंडार</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Baloo+Bhai+2:wght@800&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --color1: #FF3E4D;
+            --color2: #FF9F1C;
+            --color3: #2EC4B6;
+            --color4: #E71D36;
+            --color5: #662E9B;
+            --color6: #F86624;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url('https://cdn.pixabay.com/photo/2017/08/11/12/52/rakhi-2630652_1280.jpg') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+            color: white;
+            text-align: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.45);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 3.8rem;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+            letter-spacing: 2px;
+            font-family: 'Baloo Bhai 2', cursive;
+            margin-bottom: 12px;
+            user-select: none;
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover {
+            color: #cdcfb6;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+            cursor: pointer;
+        }
+
+        /* Greeting box */
+
+        .greeting-box {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            min-height: 150px;
+            color: white;
+            font-weight: 600;
+            background-image: url('https://img.freepik.com/premium-photo/3d-render-happy-raksha-bandhan-celebration-beautiful-traditional-rakhi-design-background_460848-499.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .name-input {
+            margin: 10px 0 20px 0;
+        }
+
+        input#userName {
+            padding: 15px 25px;
+            width: 70%;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            outline: none;
+            color: #333;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        input#userName:focus {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            background: linear-gradient(45deg, var(--color4), var(--color6));
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: not-allowed;
+            margin-top: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.5;
+        }
+
+        button.active {
+            cursor: pointer;
+            opacity: 1;
+        }
+
+        button:hover.active {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        #greetingResult {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-top: 20px;
+            user-select: none;
+        }
+
+        /* Other existing styles below... */
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">अनमोल डेयरी मिष्ठान भंडार</div>
+            <h1>रक्षाबंधन की रंगीन बधाई</h1>
+        </div>
+
+        <div class="greeting-box">
+            <div class="name-input">
+                <h2>अपना नाम बताएं</h2>
+                <input type="text" id="userName" placeholder="यहाँ अपना नाम लिखें..." autocomplete="off" />
+                <button id="congratsBtn" disabled>बधाई प्राप्त करें</button>
+            </div>
+            <div id="greetingResult"></div>
+        </div>
+
+        <!-- बाकी कंटेंट, गैलरी आदि -->
+
+    </div>
+
+    <!-- Background music -->
+    <audio id="backgroundMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script>
+        const inputName = document.getElementById('userName');
+        const congratsBtn = document.getElementById('congratsBtn');
+        const greetingResult = document.getElementById('greetingResult');
+        let greetedNames = new Set();
+
+        inputName.addEventListener('input', () => {
+            const name = inputName.value.trim();
+            if (name.length > 0) {
+                congratsBtn.disabled = false;
+                congratsBtn.classList.add('active');
+            } else {
+                congratsBtn.disabled = true;
+                congratsBtn.classList.remove('active');
+            }
+
+            greetingResult.textContent = '';
+        });
+
+        inputName.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !congratsBtn.disabled) {
+                congratsBtn.click();
+            }
+        });
+
+        congratsBtn.addEventListener('click', () => {
+            const name = inputName.value.trim();
+            if (name.length === 0) return;
+
+            if (greetedNames.has(name.toLowerCase())) {
+                inputName.value = '';
+                congratsBtn.disabled = true;
+                congratsBtn.classList.remove('active');
+                return;
+            }
+
+            const greetings = [
+                `प्रिय ${name}, रक्षाबंधन की हार्दिक शुभकामनाएं!`,
+                `आदरणीय ${name} जी, इस पावन पर्व पर हमारी ढेर सारी बधाई!`,
+                `प्यारे ${name}, राखी के इस त्योहार पर आपको अनमोल डेयरी की तरफ से शुभकामनाएं!`
+            ];
+
+            const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+
+            greetingResult.innerHTML = `<h2>${randomGreeting}</h2>
+    <p>आपके जीवन में सुख, शांति और समृद्धि बनी रहे। भगवान आपको और आपके परिवार को सदैव सुरक्षित रखें।</p>
+    <p>हमारी दुकान पर आकर स्वादिष्ट मिठाइयों से इस त्योहार को और भी मीठा बनाएं!</p>
+    <p>हमारे विशेष रक्षाबंधन ऑफर का लाभ उठाएं - सभी मिठाइयों पर 10% की विशेष छूट!</p>`;
+
+            greetedNames.add(name.toLowerCase());
+
+            inputName.value = '';
+            congratsBtn.disabled = true;
+            congratsBtn.classList.remove('active');
+
+            document.getElementById('backgroundMusic').play().catch(() => { });
+
+            greetingResult.scrollIntoView({ behavior: 'smooth' });
+        });
+
+
+    </script>
+    <!-- बधाई बॉक्स के बाद नया सेक्शन -->
+    <!-- मालिक और मिठाई की गैलरी सेक्शन -->
+    <div class="owner-sweets-section" style="margin-top:40px; text-align:center; color:white;">
+
+        <div class="owner-profile" style="margin-bottom:25px; animation: fadeInUp 1s ease forwards;">
+            <img src="https://i.postimg.cc/2yGJPKjf/MyImage.jpg" alt="मालिक चंद्रमा यादव"
+                style="width:180px; height:180px; border-radius:50%; object-fit:cover; object-position:center 28%; border: 4px solid #ffd700; box-shadow: 0 0 20px #ffd700;" />
+
+            <h2 style="margin-top:15px; font-family: 'Baloo Bhai 2', cursive;">चंद्रमा यादव</h2>
+        </div>
+
+        <h3 style="margin-bottom: 25px; font-family: 'Baloo Bhai 2', cursive; animation: fadeInUp 1.5s ease forwards;">
+            हमारी विशेष मिठाइयाँ</h3>
+
+        <div class="sweets-gallery"
+            style="display:flex; justify-content:center; gap:25px; flex-wrap:wrap; margin-top:30px;">
+
+            <div class="sweet-item"
+                style="max-width:220px; border-radius:15px; overflow:hidden; box-shadow: 0 7px 20px rgba(0,0,0,0.3); background: rgba(255,255,255,0.15); text-align:center; transition: transform 0.3s ease;">
+                <img src="https://cdn.ready-market.com.tw/21cd62de/Templates/pic/ANKO-Rasgulla-1200X1200.jpg?v=1a046a18"
+                    alt="रसगुल्ला"
+                    style="width:100%; height:180px; object-fit:cover; border-bottom: 2px solid #ffa500;" />
+                <div style="padding: 12px; color: white; font-weight: 700; font-size: 1.1rem;">रसगुल्ला</div>
+            </div>
+
+            <div class="sweet-item"
+                style="max-width:220px; border-radius:15px; overflow:hidden; box-shadow: 0 7px 20px rgba(0,0,0,0.3); background: rgba(255,255,255,0.15); text-align:center; transition: transform 0.3s ease;">
+                <img src="https://5.imimg.com/data5/ANDROID/Default/2022/1/WP/EN/KY/18117305/ccf940ca-26e7-469b-b5fc-d89a0b7e3100-jpeg.jpeg"
+                    alt="मावा बर्फी"
+                    style="width:100%; height:180px; object-fit:cover; border-bottom: 2px solid #ff6f61;" />
+                <div style="padding: 12px; color: white; font-weight: 700; font-size: 1.1rem;">मावा बर्फी</div>
+            </div>
+
+            <div class="sweet-item"
+                style="max-width:220px; border-radius:15px; overflow:hidden; box-shadow: 0 7px 20px rgba(0,0,0,0.3); background: rgba(255,255,255,0.15); text-align:center; transition: transform 0.3s ease;">
+                <img src="https://vismaifood.com/storage/app/uploads/public/57c/215/a2b/thumb__1200_0_0_0_auto.jpg"
+                    alt="कलाकंद"
+                    style="width:100%; height:180px; object-fit:cover; border-bottom: 2px solid #f86624;" />
+                <div style="padding: 12px; color: white; font-weight: 700; font-size: 1.1rem;">कलाकंद</div>
+            </div>
+
+            <div class="sweet-item"
+                style="max-width:220px; border-radius:15px; overflow:hidden; box-shadow: 0 7px 20px rgba(0,0,0,0.3); background: rgba(255,255,255,0.15); text-align:center; transition: transform 0.3s ease;">
+                <img src="https://i0.wp.com/www.chitrasfoodbook.com/wp-content/uploads/2016/10/gulab-jamun-using-mix.jpg?w=1200&ssl=1"
+                    alt="गुलाब जामुन"
+                    style="width:100%; height:180px; object-fit:cover; border-bottom: 2px solid #d94f4f;" />
+                <div style="padding: 12px; color: white; font-weight: 700; font-size: 1.1rem;">गुलाब जामुन</div>
+            </div>
+
+        </div>
+
+        <style>
+            .sweet-item:hover {
+                transform: scale(1.05);
+                box-shadow: 0 15px 35px rgba(252, 128, 25, 0.85);
+            }
+        </style>
+
+
+        <!-- दुकान का पता और मार्केटिंग एड -->
+        <div class="shop-info" style="margin-top:40px; animation: fadeInUp 2.5s ease forwards;">
+            <h2>हमसे संपर्क करें</h2>
+            <p><strong>दुकान का नाम:</strong> अनमोल डेयरी मिष्ठान भंडार</p>
+            <p><strong>पता:</strong> नसीराबाद, मधुर मिलन मोड़, बलिया, उत्तर प्रदेश</p>
+            <p><strong>मोबाइल नंबर:</strong> 9918312062</p>
+
+            <!-- राखी स्पेशल एड सेक्शन (Footer के ऊपर डालें) -->
+            <!-- राखी स्पेशल एड सेक्शन -->
+            <div style="
+    margin: 40px auto 0 auto;
+    max-width: 500px;
+    background: linear-gradient(90deg,#ffcb77 20%,#ff7c43 100%);
+    color: #642800;
+    border-radius: 18px;
+    box-shadow: 0 4px 18px rgba(255, 124, 67, 0.09);
+    padding: 22px 18px 18px 18px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.12rem;
+    letter-spacing: 0.5px;
+    position: relative;
+    border: 2px dashed #f6830f;
+    ">
+                <span style="font-size:1.5em;">🎁</span>
+                <div style="font-family:'Baloo Bhai 2',cursive;font-size:1.2rem;margin-bottom:2px;">
+                    <span style="color: #e23744;">रक्षाबंधन विशेष!</span>
+                </div>
+                <div>
+                    <span style="color:#5d2200;">भाई-बहन के प्यार के इस त्योहार पर ताजगी और स्वाद से भरपूर मिठाइयाँ
+                        सिर्फ अनमोल डेयरी मिष्ठान भंडार से ऑर्डर करें।</span>
+                    <br>
+                    <span style="color:#642800;">शुभ अवसर के लिए विशेष ऑर्डर बुकिंग जारी है।</span>
+                </div>
+                <div style="font-size:1em; margin-top:8px; color:#e23744;">
+                    ऑर्डर के लिए कॉल करें: <strong>9918312062</strong>
+                </div>
+
+                <!-- मिठाई की एनिमेटेड इमेज -->
+                <div style="text-align:center; margin-top:20px;">
+                    <img src="https://c.tadst.com/gfx/750w/kid-in-festive-clothing-feeding-sweets-to-sibling.jpg"
+                        alt="रक्षाबंधन मिठाई" style="
+      width: 180px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(252, 128, 25, 0.7);
+      animation: floatUpDown 3s ease-in-out infinite;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    " onmouseover="this.style.transform='scale(1.1)';" onmouseout="this.style.transform='scale(1)';" />
+                </div>
+            </div>
+
+            <style>
+                @keyframes floatUpDown {
+
+                    0%,
+                    100% {
+                        transform: translateY(0);
+                    }
+
+                    50% {
+                        transform: translateY(-20px);
+                    }
+                }
+            </style>
+
+            <style>
+                @keyframes fadeInUp {
+                    0% {
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+
+                    100% {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                @keyframes slideIn {
+                    0% {
+                        opacity: 0;
+                        transform: translateX(50px);
+                    }
+
+                    100% {
+                        opacity: 1;
+                        transform: translateX(0);
+                    }
+                }
+
+                @keyframes pulse {
+                    0% {
+                        box-shadow: 0 0 5px rgba(252, 128, 25, 0.7);
+                    }
+
+                    100% {
+                        box-shadow: 0 0 25px rgba(252, 128, 25, 1);
+                    }
+                }
+
+                /* स्वीट आइटम पर होवर इफेक्ट */
+                .sweet-item:hover {
+                    transform: scale(1.05);
+                    box-shadow: 0 15px 35px rgba(252, 128, 25, 0.9);
+                }
+
+                @keyframes floatUpDown {
+
+                    0%,
+                    100% {
+                        transform: translateY(0);
+                    }
+
+                    50% {
+                        transform: translateY(-20px);
+                    }
+                }
+            </style>
+
+
+</body>
+
+</html>
