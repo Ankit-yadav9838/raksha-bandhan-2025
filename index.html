@@ -5,150 +5,649 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>रक्षाबंधन की रंगीन बधाई | अनमोल डेयरी मिष्ठान भंडार</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Baloo+Bhai+2:wght@800&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Baloo+Bhai+2:wght@400;600;800&display=swap"
         rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
         :root {
-            --color1: #FF3E4D;
-            --color2: #FF9F1C;
-            --color3: #2EC4B6;
-            --color4: #E71D36;
-            --color5: #662E9B;
-            --color6: #F86624;
+            --primary-orange: #FF6B35;
+            --primary-gold: #FFD700;
+            --accent-red: #E71D36;
+            --accent-pink: #FF69B4;
+            --accent-purple: #8A2BE2;
+            --warm-white: #FFF8DC;
+            --text-dark: #2C1810;
+            --shadow-light: rgba(255, 255, 255, 0.2);
+            --shadow-dark: rgba(0, 0, 0, 0.3);
+            --gradient-primary: linear-gradient(135deg, var(--primary-orange), var(--accent-red));
+            --gradient-gold: linear-gradient(135deg, var(--primary-gold), #FFA500);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            margin: 0;
-            padding: 0;
             font-family: 'Poppins', sans-serif;
-            background: url('https://cdn.pixabay.com/photo/2017/08/11/12/52/rakhi-2630652_1280.jpg') no-repeat center center fixed;
-            background-size: cover;
-            position: relative;
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FFD700 100%);
+            background-attachment: fixed;
             color: white;
             text-align: center;
             min-height: 100vh;
             overflow-x: hidden;
+            position: relative;
         }
 
-        body::before {
-            content: "";
+        /* Animated Background Elements */
+        .bg-decoration {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: rgba(0, 0, 0, 0.45);
             pointer-events: none;
-            z-index: 0;
+            z-index: 1;
+        }
+
+        .floating-sweet {
+            width: 25px;
+            height: 25px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        .floating-sweet:nth-child(2) {
+            top: 20%;
+            left: 10%;
+            animation-delay: -1s;
+        }
+
+        .floating-sweet:nth-child(3) {
+            top: 60%;
+            right: 15%;
+            animation-delay: -3s;
+        }
+
+        .floating-sweet:nth-child(4) {
+            top: 80%;
+            left: 20%;
+            animation-delay: -2s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(180deg);
+            }
+        }
+
+        /* Confetti Animation */
+        .confetti {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-pink);
+            animation: confetti-fall 3s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
         }
 
         .container {
             position: relative;
             z-index: 10;
-            padding: 20px;
-            max-width: 900px;
+            padding: 15px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
+        /* Header Styles */
+        .header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
         .logo {
-            font-size: 3.8rem;
-            font-weight: 900;
-            color: #ffd700;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
-            letter-spacing: 2px;
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            font-weight: 800;
+            color: var(--primary-gold);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
             font-family: 'Baloo Bhai 2', cursive;
-            margin-bottom: 12px;
-            user-select: none;
-            transition: color 0.3s ease;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            line-height: 1.2;
         }
 
         .logo:hover {
-            color: #cdcfb6;
-            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
-            cursor: pointer;
+            transform: scale(1.05);
+            text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.7);
         }
 
-        /* Greeting box */
+        .header h1 {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            font-weight: 600;
+            color: var(--warm-white);
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 0.8rem;
+        }
 
+        /* Greeting Box - Compact */
         .greeting-box {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border-radius: 25px;
-            padding: 30px;
-            margin: 20px 0;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 15px 35px var(--shadow-dark);
+            border: 2px solid var(--shadow-light);
             position: relative;
             overflow: hidden;
-            min-height: 150px;
-            color: white;
-            font-weight: 600;
-            background-image: url('https://static.vecteezy.com/system/resources/previews/020/747/350/non_2x/happy-raksha-bandhan-greeting-card-with-beautiful-pearl-rakhi-on-dark-pink-and-orange-background-vector.jpg');
-            background-size: cover;
-            background-position: center;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .greeting-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%23FFD700" opacity="0.3"/><circle cx="80" cy="30" r="1.5" fill="%23FF69B4" opacity="0.4"/><circle cx="60" cy="70" r="2.5" fill="%23FFA500" opacity="0.3"/></svg>');
+            pointer-events: none;
         }
 
         .name-input {
-            margin: 10px 0 20px 0;
+            margin: 0.8rem 0 1.5rem 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .name-input h2 {
+            font-size: clamp(1.2rem, 4vw, 1.6rem);
+            margin-bottom: 1rem;
+            color: var(--warm-white);
+            font-family: 'Baloo Bhai 2', cursive;
         }
 
         input#userName {
-            padding: 15px 25px;
-            width: 70%;
+            padding: 0.8rem 1.2rem;
+            width: min(350px, 90%);
             border: none;
-            border-radius: 50px;
-            font-size: 18px;
+            border-radius: 40px;
+            font-size: 1rem;
             outline: none;
-            color: #333;
-            background: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s;
+            color: var(--text-dark);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            font-family: inherit;
         }
 
         input#userName:focus {
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
         }
 
-        button {
-            background: linear-gradient(45deg, var(--color4), var(--color6));
+        .btn {
+            background: var(--gradient-primary);
             color: white;
             border: none;
-            padding: 15px 35px;
-            border-radius: 50px;
-            font-size: 18px;
-            cursor: not-allowed;
-            margin-top: 20px;
-            transition: all 0.3s;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            font-weight: bold;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            margin: 0.8rem 0.3rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            min-width: 140px;
+        }
+
+        .btn:disabled {
+            cursor: not-allowed;
             opacity: 0.5;
+            transform: none;
         }
 
-        button.active {
-            cursor: pointer;
-            opacity: 1;
+        .btn:not(:disabled):hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
         }
 
-        button:hover.active {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        .btn:not(:disabled):active {
+            transform: translateY(-1px) scale(1.01);
+        }
+
+        .btn-secondary {
+            background: var(--gradient-gold);
+            color: var(--text-dark);
         }
 
         #greetingResult {
-            font-size: 1.3rem;
-            line-height: 1.6;
-            margin-top: 20px;
-            user-select: none;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            line-height: 1.5;
+            margin-top: 1.5rem;
+            padding: 1.2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            animation: slideInUp 0.5s ease-out;
         }
 
-        /* Other existing styles below... */
+        /* Social Share Buttons - Compact */
+        .share-section {
+            margin: 1.5rem 0;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-top: 0.8rem;
+        }
+
+        .share-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px) scale(1.08);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .share-whatsapp {
+            background: #25D366;
+        }
+
+        .share-facebook {
+            background: #1877F2;
+        }
+
+        .share-twitter {
+            background: #1DA1F2;
+        }
+
+        .share-telegram {
+            background: #0088CC;
+        }
+
+        /* Floating CTA Button */
+        .floating-cta {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .floating-cta:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
+            }
+
+            100% {
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        /* Compact Sweet Items */
+        .sweets-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+            padding: 0 0.5rem;
+        }
+
+        .sweet-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px var(--shadow-dark);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .sweet-item:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(255, 107, 53, 0.5);
+        }
+
+        .sweet-item img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        .sweet-item .content {
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .sweet-item h4 {
+            color: var(--primary-gold);
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .sweet-item p {
+            color: var(--warm-white);
+            font-size: 0.75rem;
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+        }
+
+        .sweet-item .order-hint {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.25rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        /* Confirmation Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: var(--gradient-gold);
+            color: var(--text-dark);
+            margin: 15% auto;
+            padding: 2rem;
+            border-radius: 20px;
+            width: min(400px, 90%);
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal h3 {
+            margin-bottom: 1rem;
+            font-family: 'Baloo Bhai 2', cursive;
+        }
+
+        .modal-buttons {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .modal-btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-btn.confirm {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .modal-btn.cancel {
+            background: rgba(255, 255, 255, 0.3);
+            color: var(--text-dark);
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatUpDown {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .greeting-box {
+                padding: 1.2rem;
+                margin: 1rem 0;
+            }
+
+            .share-buttons {
+                gap: 0.5rem;
+            }
+
+            .floating-cta {
+                bottom: 15px;
+                right: 15px;
+                padding: 0.7rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            input#userName {
+                width: 95%;
+            }
+
+            .btn {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.9rem;
+                margin: 0.5rem 0.2rem;
+                min-width: 120px;
+            }
+
+            .sweets-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                gap: 1rem;
+            }
+
+            .sweet-item img {
+                height: 100px;
+            }
+
+            .sweet-item .content {
+                padding: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1rem;
+            }
+
+            .name-input h2 {
+                font-size: 1.3rem;
+            }
+
+            .btn {
+                min-width: 110px;
+            }
+
+            .sweets-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .share-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .modal-content {
+                margin: 20% auto;
+                padding: 1.5rem;
+            }
+        }
+
+        /* Accessibility improvements */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Focus styles for better accessibility */
+        button:focus,
+        input:focus,
+        a:focus {
+            outline: 2px solid var(--primary-gold);
+            outline-offset: 2px;
+        }
+
+        /* Loading state for images */
+        img {
+            transition: opacity 0.3s ease;
+        }
+
+        img[loading="lazy"] {
+            opacity: 0;
+        }
+
+        img[loading="lazy"].loaded {
+            opacity: 1;
+        }
     </style>
 </head>
 
 <body>
+    <!-- Animated Background Elements -->
+    <div class="bg-decoration floating-sweet"></div>
+    <div class="bg-decoration floating-sweet"></div>
+    <div class="bg-decoration floating-sweet"></div>
+    <div class="bg-decoration floating-sweet"></div>
+
     <div class="container">
         <div class="header">
             <div class="logo">अनमोल डेयरी मिष्ठान भंडार</div>
@@ -159,13 +658,228 @@
             <div class="name-input">
                 <h2>आपका शुभ नाम</h2>
                 <input type="text" id="userName" placeholder="यहाँ अपना नाम लिखें..." autocomplete="off" />
-                <button id="congratsBtn" disabled>बधाई प्राप्त करें</button>
+                <div style="margin-top: 1.2rem;">
+                    <button id="congratsBtn" class="btn" disabled>
+                        <i class="fas fa-gift"></i> बधाई प्राप्त करें
+                    </button>
+                    <button id="orderBtn" class="btn btn-secondary">
+                        <i class="fab fa-whatsapp"></i> ऑर्डर करें
+                    </button>
+                </div>
             </div>
             <div id="greetingResult"></div>
         </div>
 
-        <!-- बाकी कंटेंट, गैलरी आदि -->
+        <!-- Social Share Section -->
+        <div class="share-section">
+            <h3 style="margin-bottom: 0.8rem; font-family: 'Baloo Bhai 2', cursive; font-size: 1.2rem;">
+                <i class="fas fa-share-alt"></i> साझा करें
+            </h3>
+            <div class="share-buttons">
+                <a href="#" class="share-btn share-whatsapp" id="shareWhatsApp" title="WhatsApp पर साझा करें">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="#" class="share-btn share-facebook" id="shareFacebook" title="Facebook पर साझा करें">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="share-btn share-twitter" id="shareTwitter" title="Twitter पर साझा करें">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="share-btn share-telegram" id="shareTelegram" title="Telegram पर साझा करें">
+                    <i class="fab fa-telegram-plane"></i>
+                </a>
+            </div>
+        </div>
 
+        <!-- Owner Profile - Compact -->
+        <div class="owner-profile" style="margin: 2rem 0 1.5rem 0; animation: fadeInUp 1s ease-out 0.9s both;">
+            <div style="position: relative; display: inline-block;">
+                <img src="https://i.postimg.cc/2yGJPKjf/MyImage.jpg" alt="मालिक चंद्रमा यादव"
+                    style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; object-position: center 28%; border: 3px solid var(--primary-gold); box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); transition: all 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.08)'; this.style.boxShadow='0 0 30px rgba(255, 215, 0, 0.8)';"
+                    onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0 20px rgba(255, 215, 0, 0.5)';" />
+                <div
+                    style="position: absolute; bottom: 5px; right: 5px; background: var(--primary-gold); color: var(--text-dark); width: 25px; height: 25px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem;">
+                    👨‍🍳</div>
+            </div>
+            <h2
+                style="margin-top: 0.8rem; font-family: 'Baloo Bhai 2', cursive; color: var(--primary-gold); font-size: 1.5rem;">
+                चंद्रमा यादव</h2>
+            <p style="color: var(--warm-white); font-style: italic; margin-top: 0.3rem; font-size: 0.9rem;">मालिक एवं
+                मुख्य हलवाई</p>
+        </div>
+
+        <!-- Interactive Sweets Gallery -->
+        <h3
+            style="margin-bottom: 1.5rem; font-family: 'Baloo Bhai 2', cursive; font-size: clamp(1.3rem, 4vw, 1.8rem); color: var(--warm-white); animation: fadeInUp 1s ease-out 1.1s both;">
+            <i class="fas fa-star" style="color: var(--primary-gold);"></i> हमारी विशेष मिठाइयाँ <i class="fas fa-star"
+                style="color: var(--primary-gold);"></i>
+        </h3>
+
+        <div class="sweets-gallery" style="animation: fadeInUp 1s ease-out 1.3s both;">
+            <div class="sweet-item" onclick="orderSweet('रसगुल्ला', '🍯')">
+                <img src="https://cdn.ready-market.com.tw/21cd62de/Templates/pic/ANKO-Rasgulla-1200X1200.jpg?v=1a046a18"
+                    alt="रसगुल्ला" />
+                <div class="content">
+                    <h4>🍯 रसगुल्ला</h4>
+                    <p>मुंह में घुल जाने वाला मीठा स्वाद</p>
+                    <div class="order-hint">
+                        <i class="fab fa-whatsapp"></i> ऑर्डर करें
+                    </div>
+                </div>
+            </div>
+
+            <div class="sweet-item" onclick="orderSweet('मावा बर्फी', '🥛')">
+                <img src="https://5.imimg.com/data5/ANDROID/Default/2022/1/WP/EN/KY/18117305/ccf940ca-26e7-469b-b5fc-d89a0b7e3100-jpeg.jpeg"
+                    alt="मावा बर्फी" />
+                <div class="content">
+                    <h4>🥛 मावा बर्फी</h4>
+                    <p>शुद्ध दूध से बनी पारंपरिक मिठाई</p>
+                    <div class="order-hint">
+                        <i class="fab fa-whatsapp"></i> ऑर्डर करें
+                    </div>
+                </div>
+            </div>
+
+            <div class="sweet-item" onclick="orderSweet('कलाकंद', '🧀')">
+                <img src="https://vismaifood.com/storage/app/uploads/public/57c/215/a2b/thumb__1200_0_0_0_auto.jpg"
+                    alt="कलाकंद" />
+                <div class="content">
+                    <h4>🧀 कलाकंद</h4>
+                    <p>बंगाली स्टाइल की स्वादिष्ट मिठाई</p>
+                    <div class="order-hint">
+                        <i class="fab fa-whatsapp"></i> ऑर्डर करें
+                    </div>
+                </div>
+            </div>
+
+            <div class="sweet-item" onclick="orderSweet('गुलाब जामुन', '🌹')">
+                <img src="https://i0.wp.com/www.chitrasfoodbook.com/wp-content/uploads/2016/10/gulab-jamun-using-mix.jpg?w=1200&ssl=1"
+                    alt="गुलाब जामुन" />
+                <div class="content">
+                    <h4>🌹 गुलाब जामुन</h4>
+                    <p>गुलाब की खुशबू वाली मिठाई</p>
+                    <div class="order-hint">
+                        <i class="fab fa-whatsapp"></i> ऑर्डर करें
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact & Special Offer Section - Compact -->
+        <div class="contact-section"
+            style="margin-top: 2rem; padding: 1.5rem 0; animation: fadeInUp 1s ease-out 1.5s both;">
+
+            <!-- Contact Info Card -->
+            <div
+                style="background: rgba(255,255,255,0.1); backdrop-filter: blur(15px); border-radius: 20px; padding: 1.5rem; margin: 1.5rem auto; max-width: 500px; box-shadow: 0 15px 30px var(--shadow-dark); border: 2px solid var(--shadow-light);">
+                <h2
+                    style="font-family: 'Baloo Bhai 2', cursive; color: var(--primary-gold); font-size: clamp(1.3rem, 4vw, 1.6rem); margin-bottom: 1rem;">
+                    <i class="fas fa-store"></i> संपर्क करें
+                </h2>
+
+                <div style="display: grid; gap: 0.8rem; text-align: left; max-width: 350px; margin: 0 auto;">
+                    <div
+                        style="display: flex; align-items: center; gap: 0.8rem; padding: 0.6rem; background: rgba(255,255,255,0.05); border-radius: 12px;">
+                        <i class="fas fa-shop" style="color: var(--primary-gold); font-size: 1rem; width: 16px;"></i>
+                        <div>
+                            <strong style="color: var(--warm-white); font-size: 0.9rem;">दुकान:</strong><br>
+                            <span style="color: var(--warm-white); font-size: 0.85rem;">अनमोल डेयरी मिष्ठान भंडार</span>
+                        </div>
+                    </div>
+
+                    <div
+                        style="display: flex; align-items: center; gap: 0.8rem; padding: 0.6rem; background: rgba(255,255,255,0.05); border-radius: 12px;">
+                        <i class="fas fa-map-marker-alt"
+                            style="color: var(--primary-gold); font-size: 1rem; width: 16px;"></i>
+                        <div>
+                            <strong style="color: var(--warm-white); font-size: 0.9rem;">पता:</strong><br>
+                            <span style="color: var(--warm-white); font-size: 0.85rem;">नसीराबाद, मधुर मिलन मोड़, बलिया,
+                                उत्तर प्रदेश</span>
+                        </div>
+                    </div>
+
+                    <div
+                        style="display: flex; align-items: center; gap: 0.8rem; padding: 0.6rem; background: rgba(255,255,255,0.05); border-radius: 12px;">
+                        <i class="fas fa-phone" style="color: var(--primary-gold); font-size: 1rem; width: 16px;"></i>
+                        <div>
+                            <strong style="color: var(--warm-white); font-size: 0.9rem;">मोबाइल:</strong><br>
+                            <a href="tel:+919918312062"
+                                style="color: var(--primary-gold); text-decoration: none; font-weight: 600; font-size: 0.9rem;">9918312062</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Special Offer Card - Compact -->
+            <div
+                style="margin: 2rem auto; max-width: 500px; background: var(--gradient-gold); color: var(--text-dark); border-radius: 20px; box-shadow: 0 15px 30px rgba(255, 215, 0, 0.3); padding: 1.5rem; text-align: center; position: relative; overflow: hidden;">
+
+                <div style="position: relative; z-index: 2;">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.8rem;">🎁</div>
+                    <h3
+                        style="font-family: 'Baloo Bhai 2', cursive; font-size: clamp(1.2rem, 4vw, 1.5rem); margin-bottom: 0.8rem; color: var(--accent-red);">
+                        रक्षाबंधन विशेष ऑफर!
+                    </h3>
+
+                    <p style="font-size: 1rem; line-height: 1.5; margin-bottom: 1rem; font-weight: 500;">
+                        भाई-बहन के प्यार के इस पावन त्योहार पर <strong>ताजगी और स्वाद से भरपूर मिठाइयाँ</strong> ऑर्डर
+                        करें।
+                    </p>
+
+                    <div
+                        style="background: rgba(255,255,255,0.2); padding: 0.8rem; border-radius: 12px; margin-bottom: 1rem;">
+                        <p style="margin: 0; font-weight: 600; font-size: 0.9rem;">✨ विशेष ऑर्डर बुकिंग जारी है ✨</p>
+                    </div>
+
+                    <button class="btn" onclick="handleOrder()"
+                        style="background: var(--gradient-primary); border: none; color: white; font-size: 1rem; padding: 0.8rem 1.5rem; margin: 0; transform: none;">
+                        <i class="fab fa-whatsapp"></i> अभी ऑर्डर करें
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Section - Compact -->
+        <footer
+            style="margin-top: 2rem; padding: 1.5rem 0; background: rgba(0,0,0,0.2); backdrop-filter: blur(10px); border-top: 2px solid var(--shadow-light); animation: fadeInUp 1s ease-out 1.7s both;">
+            <div style="text-align: center; color: var(--warm-white);">
+                <p style="margin: 0.3rem 0; font-size: 0.8rem;">
+                    <i class="fas fa-heart" style="color: var(--accent-red);"></i>
+                    बनाया गया प्यार से अनमोल डेयरी मिष्ठान भंडार के लिए
+                    <i class="fas fa-heart" style="color: var(--accent-red);"></i>
+                </p>
+                <p style="margin: 0.3rem 0; font-size: 0.75rem; opacity: 0.8;">
+                    © 2025 अनमोल डेयरी मिष्ठान भंडार - सभी अधिकार सुरक्षित
+                </p>
+                <div style="margin-top: 0.8rem;">
+                    <i class="fas fa-phone" style="color: var(--primary-gold);"></i>
+                    <span style="margin-left: 0.5rem; font-weight: 600; font-size: 0.9rem;">9918312062</span>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Floating CTA Button -->
+    <button class="floating-cta" id="floatingOrder">
+        <i class="fab fa-whatsapp"></i> ऑर्डर करें
+    </button>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <h3 id="modalTitle">🍯 रसगुल्ला ऑर्डर करें?</h3>
+            <p id="modalMessage">क्या आप इस मिठाई को WhatsApp पर ऑर्डर करना चाहते हैं?</p>
+            <div class="modal-buttons">
+                <button class="modal-btn confirm" onclick="confirmOrder()">
+                    <i class="fab fa-whatsapp"></i> हाँ, ऑर्डर करें
+                </button>
+                <button class="modal-btn cancel" onclick="closeModal()">
+                    रद्द करें
+                </button>
+            </div>
+        </div>
     </div>
 
     <!-- Background music -->
@@ -174,38 +888,104 @@
     </audio>
 
     <script>
+        // DOM Elements
         const inputName = document.getElementById('userName');
         const congratsBtn = document.getElementById('congratsBtn');
+        const orderBtn = document.getElementById('orderBtn');
+        const floatingOrder = document.getElementById('floatingOrder');
         const greetingResult = document.getElementById('greetingResult');
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        const confirmModal = document.getElementById('confirmModal');
+
+        // State
         let greetedNames = new Set();
+        let musicTimeout = null;
+        let currentSweetOrder = null;
 
-        inputName.addEventListener('input', () => {
-            const name = inputName.value.trim();
-            if (name.length > 0) {
-                congratsBtn.disabled = false;
-                congratsBtn.classList.add('active');
-            } else {
-                congratsBtn.disabled = true;
-                congratsBtn.classList.remove('active');
-            }
+        // Shop Details
+        const shopDetails = {
+            name: "अनमोल डेयरी मिष्ठान भंडार",
+            phone: "9918312062",
+            address: "नसीराबाद, मधुर मिलन मोड़, बलिया, उत्तर प्रदेश"
+        };
 
-            greetingResult.textContent = '';
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createConfetti();
+            setupEventListeners();
+            setupSocialSharing();
         });
 
-        inputName.addEventListener('keypress', (e) => {
+        // Create confetti animation
+        function createConfetti() {
+            const colors = ['#FFD700', '#FF69B4', '#FFA500', '#FF6B35', '#E71D36'];
+
+            for (let i = 0; i < 12; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti bg-decoration';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 3 + 's';
+                    confetti.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                    document.body.appendChild(confetti);
+
+                    setTimeout(() => confetti.remove(), 6000);
+                }, i * 150);
+            }
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Input validation
+            inputName.addEventListener('input', handleNameInput);
+            inputName.addEventListener('keypress', handleKeyPress);
+
+            // Button clicks
+            congratsBtn.addEventListener('click', generateGreeting);
+            orderBtn.addEventListener('click', handleOrder);
+            floatingOrder.addEventListener('click', handleOrder);
+
+            // Logo click for fun
+            document.querySelector('.logo').addEventListener('click', () => {
+                createConfetti();
+                playMusicBriefly();
+            });
+
+            // Modal close on outside click
+            confirmModal.addEventListener('click', (e) => {
+                if (e.target === confirmModal) {
+                    closeModal();
+                }
+            });
+        }
+
+        // Handle name input
+        function handleNameInput() {
+            const name = inputName.value.trim();
+            congratsBtn.disabled = name.length === 0;
+
+            if (name.length === 0) {
+                greetingResult.innerHTML = '';
+            }
+        }
+
+        // Handle Enter key
+        function handleKeyPress(e) {
             if (e.key === 'Enter' && !congratsBtn.disabled) {
                 congratsBtn.click();
             }
-        });
+        }
 
-        congratsBtn.addEventListener('click', () => {
+        // Generate greeting
+        function generateGreeting() {
             const name = inputName.value.trim();
             if (name.length === 0) return;
 
             if (greetedNames.has(name.toLowerCase())) {
+                showMessage('आपको पहले से ही बधाई दी गई है! 🎉', 'info');
                 inputName.value = '';
                 congratsBtn.disabled = true;
-                congratsBtn.classList.remove('active');
                 return;
             }
 
@@ -217,202 +997,198 @@
 
             const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
 
-            greetingResult.innerHTML = `<h2>${randomGreeting}</h2>
-    <p>आपके जीवन में सुख, शांति और समृद्धि बनी रहे। भगवान आपको और आपके परिवार को सदैव सुरक्षित रखें।</p>
-    <p>"हमारी दुकान की स्वादिष्ट एवं शुद्ध मिठाइयों से इस त्योहार को और भी मीठा बनाएं!"</p>`;
+            greetingResult.innerHTML = `
+                <div style="animation: slideInUp 0.5s ease-out;">
+                    <h3 style="color: var(--primary-gold); margin-bottom: 0.8rem; font-size: 1.1rem;">
+                        🎉 ${randomGreeting} 🎉
+                    </h3>
+                    <p style="margin-bottom: 0.8rem; font-size: 0.95rem;">आपके जीवन में सुख, शांति और समृद्धि बनी रहे। भगवान आपको और आपके परिवार को सदैव सुरक्षित रखें।</p>
+                    <p style="font-style: italic; color: var(--warm-white); font-size: 0.9rem;">"हमारी दुकान की स्वादिष्ट एवं शुद्ध मिठाइयों से इस त्योहार को और भी मीठा बनाएं!"</p>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn btn-secondary" onclick="handleOrder()" style="margin: 0.3rem; font-size: 0.9rem;">
+                            <i class="fab fa-whatsapp"></i> अभी ऑर्डर करें
+                        </button>
+                    </div>
+                </div>
+            `;
 
             greetedNames.add(name.toLowerCase());
-
             inputName.value = '';
             congratsBtn.disabled = true;
-            congratsBtn.classList.remove('active');
 
-            document.getElementById('backgroundMusic').play().catch(() => { });
+            // Create celebration effects
+            createConfetti();
+            playMusicBriefly();
 
             greetingResult.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Order specific sweet with confirmation
+        function orderSweet(sweetName, emoji) {
+            currentSweetOrder = { name: sweetName, emoji: emoji };
+
+            document.getElementById('modalTitle').textContent = `${emoji} ${sweetName} ऑर्डर करें?`;
+            document.getElementById('modalMessage').textContent = `क्या आप ${sweetName} को WhatsApp पर ऑर्डर करना चाहते हैं?`;
+
+            confirmModal.style.display = 'block';
+
+            // Add a small animation effect
+            createConfetti();
+        }
+
+        // Confirm order and redirect to WhatsApp
+        function confirmOrder() {
+            if (!currentSweetOrder) return;
+
+            const message = `नमस्ते! मैं अनमोल डेयरी मिष्ठान भंडार से ${currentSweetOrder.emoji} ${currentSweetOrder.name} ऑर्डर करना चाहता/चाहती हूँ।
+
+🏪 दुकान: ${shopDetails.name}
+📍 पता: ${shopDetails.address}
+🎉 त्योहार: रक्षाबंधन विशेष
+🍯 मिठाई: ${currentSweetOrder.name}
+
+कृपया ${currentSweetOrder.name} की उपलब्धता, दरें और डिलीवरी की जानकारी बताएं।
+
+धन्यवाद!`;
+
+            const whatsappUrl = `https://wa.me/91${shopDetails.phone}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+
+            closeModal();
+            showMessage(`${currentSweetOrder.emoji} ${currentSweetOrder.name} का ऑर्डर WhatsApp पर भेजा गया!`, 'success');
+        }
+
+        // Close modal
+        function closeModal() {
+            confirmModal.style.display = 'none';
+            currentSweetOrder = null;
+        }
+
+        // Handle general order functionality
+        function handleOrder() {
+            const message = `नमस्ते! मैं अनमोल डेयरी मिष्ठान भंडार से रक्षाबंधन की मिठाइयाँ ऑर्डर करना चाहता/चाहती हूँ।
+
+🏪 दुकान: ${shopDetails.name}
+📍 पता: ${shopDetails.address}
+🎉 त्योहार: रक्षाबंधन विशेष
+
+कृपया उपलब्ध मिठाइयों की जानकारी और दरें बताएं।
+
+धन्यवाद!`;
+
+            const whatsappUrl = `https://wa.me/91${shopDetails.phone}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Play music briefly (30 seconds max)
+        function playMusicBriefly() {
+            if (musicTimeout) {
+                clearTimeout(musicTimeout);
+            }
+
+            backgroundMusic.play().catch(() => { });
+
+            // Stop after 30 seconds
+            musicTimeout = setTimeout(() => {
+                backgroundMusic.pause();
+                backgroundMusic.currentTime = 0;
+            }, 30000);
+        }
+
+        // Setup social sharing
+        function setupSocialSharing() {
+            const currentUrl = window.location.href;
+            const shareText = `रक्षाबंधन की हार्दिक शुभकामनाएं! अनमोल डेयरी मिष्ठान भंडार से मिठाइयों का आनंद लें।`;
+
+            document.getElementById('shareWhatsApp').onclick = (e) => {
+                e.preventDefault();
+                const url = `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + currentUrl)}`;
+                window.open(url, '_blank');
+            };
+
+            document.getElementById('shareFacebook').onclick = (e) => {
+                e.preventDefault();
+                const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
+                window.open(url, '_blank');
+            };
+
+            document.getElementById('shareTwitter').onclick = (e) => {
+                e.preventDefault();
+                const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(currentUrl)}`;
+                window.open(url, '_blank');
+            };
+
+            document.getElementById('shareTelegram').onclick = (e) => {
+                e.preventDefault();
+                const url = `https://t.me/share/url?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(shareText)}`;
+                window.open(url, '_blank');
+            };
+        }
+
+        // Utility function for showing messages
+        function showMessage(message, type = 'success') {
+            const messageDiv = document.createElement('div');
+            messageDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? 'var(--gradient-primary)' : '#FFA500'};
+                color: white;
+                padding: 0.8rem 1.2rem;
+                border-radius: 10px;
+                box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+                z-index: 1001;
+                animation: slideInRight 0.3s ease-out;
+                max-width: 280px;
+                font-weight: 600;
+                font-size: 0.9rem;
+            `;
+            messageDiv.textContent = message;
+            document.body.appendChild(messageDiv);
+
+            setTimeout(() => {
+                messageDiv.style.animation = 'slideOutRight 0.3s ease-in forwards';
+                setTimeout(() => messageDiv.remove(), 300);
+            }, 3000);
+        }
+
+        // Add slide animations for messages
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInRight {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOutRight {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Smooth scroll for internal links
+        document.addEventListener('click', (e) => {
+            if (e.target.matches('a[href^="#"]')) {
+                e.preventDefault();
+                const target = document.querySelector(e.target.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
         });
 
+        // Keyboard navigation for modal
+        document.addEventListener('keydown', (e) => {
+            if (confirmModal.style.display === 'block') {
+                if (e.key === 'Escape') {
+                    closeModal();
+                } else if (e.key === 'Enter') {
+                    confirmOrder();
+                }
+            }
+        });
 
     </script>
-    <!-- बधाई बॉक्स के बाद नया सेक्शन -->
-    <!-- मालिक और मिठाई की गैलरी सेक्शन -->
-    <div class="owner-sweets-section" style="margin-top:40px; text-align:center; color:white;">
-
-        <div class="owner-profile" style="margin-bottom:25px; animation: fadeInUp 1s ease forwards;">
-            <img src="https://i.postimg.cc/2yGJPKjf/MyImage.jpg" alt="मालिक चंद्रमा यादव"
-                style="width:180px; height:180px; border-radius:50%; object-fit:cover; object-position:center 28%; border: 4px solid #ffd700; box-shadow: 0 0 20px #ffd700;" />
-
-            <h2 style="margin-top:15px; font-family: 'Baloo Bhai 2', cursive;">चंद्रमा यादव</h2>
-        </div>
-
-        <h3 style="margin-bottom: 25px; font-family: 'Baloo Bhai 2', cursive; animation: fadeInUp 1.5s ease forwards;">
-            हमारी विशेष मिठाइयाँ</h3>
-
-        <div class="sweets-gallery"
-            style="display:flex; justify-content:center; gap:25px; flex-wrap:wrap; margin-top:30px;">
-
-            <div class="sweet-item"
-                style="max-width:220px; border-radius:15px; overflow:hidden; box-shadow: 0 7px 20px rgba(0,0,0,0.3); background: rgba(255,255,255,0.15); text-align:center; transition: transform 0.3s ease;">
-                <img src="https://cdn.ready-market.com.tw/21cd62de/Templates/pic/ANKO-Rasgulla-1200X1200.jpg?v=1a046a18"
-                    alt="रसगुल्ला"
-                    style="width:100%; height:180px; object-fit:cover; border-bottom: 2px solid #ffa500;" />
-                <div style="padding: 12px; color: white; font-weight: 700; font-size: 1.1rem;">रसगुल्ला</div>
-            </div>
-
-            <div class="sweet-item"
-                style="max-width:220px; border-radius:15px; overflow:hidden; box-shadow: 0 7px 20px rgba(0,0,0,0.3); background: rgba(255,255,255,0.15); text-align:center; transition: transform 0.3s ease;">
-                <img src="https://5.imimg.com/data5/ANDROID/Default/2022/1/WP/EN/KY/18117305/ccf940ca-26e7-469b-b5fc-d89a0b7e3100-jpeg.jpeg"
-                    alt="मावा बर्फी"
-                    style="width:100%; height:180px; object-fit:cover; border-bottom: 2px solid #ff6f61;" />
-                <div style="padding: 12px; color: white; font-weight: 700; font-size: 1.1rem;">मावा बर्फी</div>
-            </div>
-
-            <div class="sweet-item"
-                style="max-width:220px; border-radius:15px; overflow:hidden; box-shadow: 0 7px 20px rgba(0,0,0,0.3); background: rgba(255,255,255,0.15); text-align:center; transition: transform 0.3s ease;">
-                <img src="https://vismaifood.com/storage/app/uploads/public/57c/215/a2b/thumb__1200_0_0_0_auto.jpg"
-                    alt="कलाकंद"
-                    style="width:100%; height:180px; object-fit:cover; border-bottom: 2px solid #f86624;" />
-                <div style="padding: 12px; color: white; font-weight: 700; font-size: 1.1rem;">कलाकंद</div>
-            </div>
-
-            <div class="sweet-item"
-                style="max-width:220px; border-radius:15px; overflow:hidden; box-shadow: 0 7px 20px rgba(0,0,0,0.3); background: rgba(255,255,255,0.15); text-align:center; transition: transform 0.3s ease;">
-                <img src="https://i0.wp.com/www.chitrasfoodbook.com/wp-content/uploads/2016/10/gulab-jamun-using-mix.jpg?w=1200&ssl=1"
-                    alt="गुलाब जामुन"
-                    style="width:100%; height:180px; object-fit:cover; border-bottom: 2px solid #d94f4f;" />
-                <div style="padding: 12px; color: white; font-weight: 700; font-size: 1.1rem;">गुलाब जामुन</div>
-            </div>
-
-        </div>
-
-        <style>
-            .sweet-item:hover {
-                transform: scale(1.05);
-                box-shadow: 0 15px 35px rgba(252, 128, 25, 0.85);
-            }
-        </style>
-
-
-        <!-- दुकान का पता और मार्केटिंग एड -->
-        <div class="shop-info" style="margin-top:40px; animation: fadeInUp 2.5s ease forwards;">
-            <h2>हमसे संपर्क करें</h2>
-            <p><strong>दुकान का नाम:</strong> अनमोल डेयरी मिष्ठान भंडार</p>
-            <p><strong>पता:</strong> नसीराबाद, मधुर मिलन मोड़, बलिया, उत्तर प्रदेश</p>
-            <p><strong>मोबाइल नंबर:</strong> 9918312062</p>
-
-            <!-- राखी स्पेशल एड सेक्शन (Footer के ऊपर डालें) -->
-            <!-- राखी स्पेशल एड सेक्शन -->
-            <div style="
-    margin: 40px auto 0 auto;
-    max-width: 500px;
-    background: linear-gradient(90deg,#ffcb77 20%,#ff7c43 100%);
-    color: #642800;
-    border-radius: 18px;
-    box-shadow: 0 4px 18px rgba(255, 124, 67, 0.09);
-    padding: 22px 18px 18px 18px;
-    text-align: center;
-    font-weight: 600;
-    font-size: 1.12rem;
-    letter-spacing: 0.5px;
-    position: relative;
-    border: 2px dashed #f6830f;
-    ">
-                <span style="font-size:1.5em;">🎁</span>
-                <div style="font-family:'Baloo Bhai 2',cursive;font-size:1.2rem;margin-bottom:2px;">
-                    <span style="color: #e23744;">रक्षाबंधन विशेष!</span>
-                </div>
-                <div>
-                    <span style="color:#5d2200;">भाई-बहन के प्यार के इस त्योहार पर ताजगी और स्वाद से भरपूर मिठाइयाँ
-                        सिर्फ अनमोल डेयरी मिष्ठान भंडार से ऑर्डर करें।</span>
-                    <br>
-                    <span style="color:#642800;">शुभ अवसर के लिए विशेष ऑर्डर बुकिंग जारी है।</span>
-                </div>
-                <div style="font-size:1em; margin-top:8px; color:#e23744;">
-                    ऑर्डर के लिए कॉल करें: <strong>9918312062</strong>
-                </div>
-
-                <!-- मिठाई की एनिमेटेड इमेज -->
-                <div style="text-align:center; margin-top:20px;">
-                    <img src="https://c.tadst.com/gfx/750w/kid-in-festive-clothing-feeding-sweets-to-sibling.jpg"
-                        alt="रक्षाबंधन मिठाई" style="
-      width: 180px;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(252, 128, 25, 0.7);
-      animation: floatUpDown 3s ease-in-out infinite;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    " onmouseover="this.style.transform='scale(1.1)';" onmouseout="this.style.transform='scale(1)';" />
-                </div>
-            </div>
-
-            <style>
-                @keyframes floatUpDown {
-
-                    0%,
-                    100% {
-                        transform: translateY(0);
-                    }
-
-                    50% {
-                        transform: translateY(-20px);
-                    }
-                }
-            </style>
-
-            <style>
-                @keyframes fadeInUp {
-                    0% {
-                        opacity: 0;
-                        transform: translateY(30px);
-                    }
-
-                    100% {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
-
-                @keyframes slideIn {
-                    0% {
-                        opacity: 0;
-                        transform: translateX(50px);
-                    }
-
-                    100% {
-                        opacity: 1;
-                        transform: translateX(0);
-                    }
-                }
-
-                @keyframes pulse {
-                    0% {
-                        box-shadow: 0 0 5px rgba(252, 128, 25, 0.7);
-                    }
-
-                    100% {
-                        box-shadow: 0 0 25px rgba(252, 128, 25, 1);
-                    }
-                }
-
-                /* स्वीट आइटम पर होवर इफेक्ट */
-                .sweet-item:hover {
-                    transform: scale(1.05);
-                    box-shadow: 0 15px 35px rgba(252, 128, 25, 0.9);
-                }
-
-                @keyframes floatUpDown {
-
-                    0%,
-                    100% {
-                        transform: translateY(0);
-                    }
-
-                    50% {
-                        transform: translateY(-20px);
-                    }
-                }
-            </style>
-
 
 </body>
 
